@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Information Image & Video</title>
+    <!-- CSS FOR STYLING THE PAGE -->
+    <style>
+      table {
+        margin: 0 auto;
+        font-size: large;
+        border: 1px solid black;
+      }
+
+      h1 {
+        text-align: center;
+        color: #006600;
+        font-size: xx-large;
+        font-family: 'Gill Sans', 'Gill Sans MT', ' Calibri', 'Trebuchet MS',
+          'sans-serif';
+      }
+
+      td {
+        background-color: #e4f5d4;
+        border: 1px solid black;
+      }
+
+      th,
+      td {
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+
+      td {
+        font-weight: lighter;
+      }
+
+      .table-info {
+        margin-left: 200px;
+        width: 65%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h1>Information video</h1>
+
+      <!-- TABLE CONSTRUCTION-->
+      <div style="display: flex">
+        <div>
+          <form>
+            <input
+              type="file"
+              id="myFile"
+              name="filename"
+            />
+            <input type="submit" />
+          </form>
+          <div style="margin-top: 30px; width: 600px">
+            <table style="width: 100%" >
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src=""
+                    alt=""
+                  />
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+          <div style="margin-top: 50px">
+            <input
+              type="search"
+              id="searchField"
+              name="search"
+              placeholder="Search..."
+            />
+            <button>Search</button>
+            <div style="margin-top: 10px; width: 600px">
+              <table
+                id="image_upload"
+                style="width: 100%"
+              >
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="table-info">
+          <table
+            id="GFGtable"
+            style="width: 100%"
+          >
+            <tr>
+              <th>Thumbnail</th>
+              <th>URL</th>
+              <th>Video Name</th>
+              <th>Actor</th>
+              <th>In black list</th>
+              <th>Processed</th>
+            </tr>
+            <!-- <tr> -->
+              <!-- <td class="gfgusername">
+                <img
+                  src=""
+                  alt=""
+                />
+              </td>
+              <td class="gfgpp">150</td>
+              <td class="gfgscores">100</td>
+              <td class="gfgscores">100</td>
+              <td class="gfgscores">100</td>
+              <td class="gfgscores">100</td> -->
+            <!-- </tr> -->
+          </table>
+        </div>
+      </div>
+    </section>
+    <script>
+      //   function fetchImages() {
+      //     fetch('https://randomuser.me/api/')
+      //       .then((response) => {
+      //         // Check if the response is ok (status in the range 200-299)
+      //         if (!response.ok) {
+      //           throw new Error('Network response was not ok');
+      //         }
+      //         return response.json(); // Parse the JSON of the response
+      //       })
+      //       .then((data) => {
+      //         // 'data' is the array of images, similar to 'imageData'
+      //         console.log(data);
+
+      //         const table = document.getElementById('image_upload');
+
+      //         data.results.forEach((data1) => {
+      //           // Create a new row and cells
+      //           const row = document.createElement('tr');
+      //           const imgCell = document.createElement('td');
+      //           const nameCell = document.createElement('td');
+
+      //           // Set the image and name
+      //           const img = document.createElement('img');
+      //           img.src = data1.cell;
+      //           img.alt = data1.phone; // Setting the alt attribute to the image name
+      //           imgCell.width = 100;
+      //           img.width = 100; // Set image width to 100 pixels
+      //           img.height = 100;
+      //           imgCell.appendChild(img);
+      //           nameCell.textContent = data1.phone;
+
+      //           // Append cells to the row
+      //           row.appendChild(imgCell);
+      //           row.appendChild(nameCell);
+
+      //           // Append the row to the table
+      //           table.appendChild(row);
+      //         });
+      //       })
+      //       .catch((error) => {
+      //         // Handle any errors
+      //         console.error(
+      //           'There was a problem with the fetch operation:',
+      //           error
+      //         );
+      //       });
+      //   }
+
+      //   fetchImages();
+
+
+      function fetchVideos() {
+          fetch('https://randomuser.me/api')
+            .then((response) => {
+              // Check if the response is ok (status in the range 200-299)
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json(); // Parse the JSON of the response
+            })
+            .then((data) => {
+              // 'data' is the array of images, similar to 'imageData'
+              console.log(data);
+
+              const table = document.getElementById('GFGtable');
+
+              data.results.forEach((data1) => {
+                // Create a new row and cells
+                const row = document.createElement('tr');
+                const thumbnail = document.createElement('td');
+                const url = document.createElement('td');
+                const video_name = document.createElement('td');
+                const actor = document.createElement('td');
+                const in_black_list = document.createElement('td');
+                const processed = document.createElement('td');
+                // Set the image and name
+                const img = document.createElement('img');
+                img.src = data1.cell;
+                img.alt = data1.cell; // Setting the alt attribute to the image name
+                thumbnail.width = 100;
+                img.width = 100; // Set image width to 100 pixels
+                img.height = 100;
+                thumbnail.appendChild(img);
+                url.textContent = data1.phone;  // thay bằng tên chuẩn của các trường khi gọi api
+                video_name.textContent = data1.phone; // thay bằng tên chuẩn của các trường khi gọi api
+                actor.textContent = data1.phone; // thay bằng tên chuẩn của các trường khi gọi api
+                in_black_list.textContent = data1.phone; // thay bằng tên chuẩn của các trường khi gọi api
+                processed.textContent = data1.phone // thay bằng tên chuẩn của các trường khi gọi api
+                // Append cells to the row
+                row.appendChild(thumbnail);
+                row.appendChild(url);
+                row.appendChild(video_name);
+                row.appendChild(actor);
+                row.appendChild(in_black_list)
+                row.appendChild(processed);
+                // Append the row to the table
+                table.appendChild(row);
+              });
+            })
+            .catch((error) => {
+              // Handle any errors
+              console.error(
+                'There was a problem with the fetch operation:',
+                error
+              );
+            });
+        }
+
+        fetchVideos();
+
+      document
+        .querySelector('form')
+        .addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const fileInput = document.getElementById('myFile');
+          const formData = new FormData();
+          formData.append('file', fileInput.files[0]);
+
+          fetch('/upload', {
+            method: 'POST',
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error('Error:', error));
+        });
+
+      const imageData = [
+        {
+          url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStl6fP_rS6PwQZFGr83R0eR3dv58KTmIVEOg&s',
+          name: 'Image One',
+        },
+        {
+          url: 'https://ichef.bbci.co.uk/images/ic/1200xn/p0dwxr5t.jpg',
+          name: 'Image Two',
+        },
+        {
+          url: 'https://ichef.bbci.co.uk/images/ic/976xn/p0ht9gpj.jpg',
+          name: 'Image Three',
+        },
+      ];
+      function displayImages(imageData) {
+        const table = document.getElementById('image_upload');
+        imageData.forEach((image) => {
+          // Create a new row and cells
+          const row = document.createElement('tr');
+          const imgCell = document.createElement('td');
+          const nameCell = document.createElement('td');
+
+          // Set the image and name
+          const img = document.createElement('img');
+          img.src = image.url;
+          img.alt = image.name; // Setting the alt attribute to the image name
+          img.style.width = '100px'; // Set image width to 100 pixels
+          img.style.height = '100px';
+          imgCell.appendChild(img);
+          nameCell.textContent = image.name;
+
+          // Append cells to the row
+          row.appendChild(imgCell);
+          row.appendChild(nameCell);
+
+          // Append the row to the table
+          table.appendChild(row);
+        });
+      }
+
+      displayImages(imageData);
+
+      document
+        .getElementById('searchField')
+        .addEventListener('input', function (event) {
+          const searchTerm = event.target.value.toLowerCase();
+          const filteredImages = imageData.filter((image) =>
+            image.name.toLowerCase().includes(searchTerm)
+          );
+          clearImages();
+          displayImages(filteredImages);
+        });
+
+      function clearImages() {
+        const table = document.getElementById('image_upload');
+        while (table.firstChild) {
+          table.removeChild(table.firstChild);
+        }
+      }
+    </script>
+  </body>
+</html>
